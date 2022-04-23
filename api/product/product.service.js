@@ -2,13 +2,15 @@ const pool = require("../../config/database");
 
 module.exports = {
     create: (data, callBack)=>{
-        pool.query(`insert into product(name, description, price, image)
-                    values(?,?,?,?)`,
+        pool.query(`insert into product(name, description, price, image,maintenance_cost, delivery_charge)
+                    values(?,?,?,?,?,?)`,
                     [
                         data.name,
                         data.desc,
                         data.price,
-                        data.imageK
+                        data.imageK,
+                        data. maintenance_cost,
+                        data.delivery_charge
                     ],
                     (error,results,fields)=>{
                         if(error){
@@ -18,7 +20,7 @@ module.exports = {
                     } 
         )},
     getAllProduct: callBack=>{
-        pool.query(`select id, name, description, price, image from product`,
+        pool.query(`select id, name, description, price, image, maintenance_cost, delivery_charge from product`,
         [],
         (error,results,fields)=>{
 
@@ -29,10 +31,12 @@ module.exports = {
         )},
     updateProduct: (data,callBack)=>{
         pool.query(
-            `update product set name=?, description=?, price=? where id = ?`,
+            `update product set name=?, description=?, maintenance_cost=?, delivery_charge=? price=? where id = ?`,
             [
             data.name,
             data.description,
+            data.maintenance_cost,
+            data.delivery_charge,
             data.price,
             data.id
         ],

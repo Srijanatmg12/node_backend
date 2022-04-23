@@ -20,24 +20,24 @@ const nodemailer = require("nodemailer");
 const { v4:uuidv4 } = require("uuid");
 
 //nodemailer stuff
-// let transporter = nodemailer.createTransport({
-//     service: 'gmail',
-//     auth:{
-//         user: process.env.AUTH_EMAIL,
-//         pass: process.env.AUTH_PASS
-//     }
-// });
+let transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth:{
+        user: process.env.AUTH_EMAIL,
+        pass: process.env.AUTH_PASS
+    }
+});
 
 // //testing success
-// transporter.verify((error, success)=>{
-//     if(error){
-//         console.log(error);
-//     }else{
-//         console.log("Ready for messages");
-//         console.log(success);
-//     }
+transporter.verify((error, success)=>{
+    if(error){
+        console.log(error);
+    }else{
+        console.log("Ready for messages");
+        console.log(success);
+    }
 
-// });
+});
 
 
 module.exports = {
